@@ -238,10 +238,9 @@ function initFirebase() {
                         });
                     });
                     
-                    if (wishes.length > 0) {
-                        renderWishes(wishes);
-                        localStorage.setItem(LOCAL_WISHES_KEY, JSON.stringify(wishes));
-                    }
+                    // Selalu render dan simpan perubahan (termasuk ketika semua data dihapus)
+                    renderWishes(wishes);
+                    localStorage.setItem(LOCAL_WISHES_KEY, JSON.stringify(wishes));
                 }, (error) => {
                     console.error("Firebase Firestore sync failed: ", error);
                 });
@@ -273,7 +272,8 @@ function initGuestBook() {
     }
     
     let wishes = JSON.parse(localStorage.getItem(LOCAL_WISHES_KEY));
-    if (!wishes || wishes.length === 0) {
+    // Hanya gunakan defaultWishes jika data lokal belum pernah dibuat sama sekali (null)
+    if (wishes === null) {
         wishes = defaultWishes;
         localStorage.setItem(LOCAL_WISHES_KEY, JSON.stringify(wishes));
     }
