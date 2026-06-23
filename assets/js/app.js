@@ -34,17 +34,16 @@ const WEDDING_CONFIG = {
     // URL Musik Latar Belakang (Royalty-Free Piano / Romantic Wedding Track)
     bgMusicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     
-    // Konfigurasi Firebase (Jika ingin menggunakan database cloud buku tamu real-time)
-    // Cukup ganti enableFirebase menjadi true dan masukkan config jika sudah ada.
     firebase: {
-        enabled: false,
+        enabled: true,
         config: {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyDMX0__A6ctdPen0S-9Kz3s2waQlNsJvio",
+            authDomain: "undangan-penikahan-4e528.firebaseapp.com",
+            projectId: "undangan-penikahan-4e528",
+            storageBucket: "undangan-penikahan-4e528.firebasestorage.app",
+            messagingSenderId: "1079880061409",
+            appId: "1:1079880061409:web:9bedd8c0b74ea2ce1502a0",
+            measurementId: "G-HK7TGJG2Z4"
         }
     }
 };
