@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Undangan Pernikahan - Arief & Indah</title>
+    
+    <!-- Tailwind CSS (via CDN) with Form Plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts & Material Symbols Setup -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    
+    <!-- Tailwind Theme Configuration to match Stitch Design System -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#735c00",
+                        "primary-container": "#d4af37",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#554300",
+                        "secondary": "#446464",
+                        "secondary-container": "#c6e9e9",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#4a6a6a",
+                        "tertiary": "#56642b",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#3d4a14",
+                        "background": "#fbf9f5",
+                        "on-background": "#1b1c1a",
+                        "surface": "#fbf9f5",
+                        "surface-dim": "#dbdad6",
+                        "surface-bright": "#fbf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "surface-container-high": "#eae8e4",
+                        "surface-container-highest": "#e4e2de",
+                        "on-surface": "#1b1c1a",
+                        "on-surface-variant": "#4d4635",
+                        "outline": "#7f7663",
+                        "outline-variant": "#d0c5af"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "base": "8px",
+                        "section-gap": "48px",
+                        "container-padding-desktop": "64px",
+                        "gutter": "16px",
+                        "container-padding-mobile": "24px"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS File Link -->
+    <link href="assets/css/style.css" rel="stylesheet"/>
+    <!-- Material Symbols for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="antialiased overflow-x-hidden font-body-md text-body-md relative pb-24 md:pb-0">
+
+    <!-- Top Navigation Bar (Visible on larger screens) -->
+    <nav class="hidden md:flex justify-between items-center px-container-padding-desktop h-16 w-full fixed top-0 z-50 bg-surface/90 border-b border-outline-variant/30 backdrop-blur-md">
+        <div class="flex items-center text-primary">
+            <span class="material-symbols-outlined mr-2">favorite</span>
+            <span class="font-semibold tracking-wider text-sm uppercase">Wedding Invitation</span>
+        </div>
+        <div class="font-headline-md text-2xl text-primary font-serif tracking-tight">
+            Arief &amp; Indah
+        </div>
+        <div class="flex items-center text-primary text-sm tracking-wide font-medium">
+            12 . 12 . 2026
+        </div>
+    </nav>
+
+    <!-- Floating Music Toggle Button -->
+    <button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-50 bg-tertiary text-on-tertiary w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(47,79,79,0.2)] hover:bg-on-tertiary-container transition-all" id="music-toggle" aria-label="Toggle Music">
+        <span class="material-symbols-outlined" id="music-icon">music_note</span>
+    </button>
+
+    <!-- Main Invitation Cover / Hero (Full Screen Overlay) -->
+    <div class="fixed inset-0 z-[100] w-full h-full flex flex-col items-center justify-center bg-cover bg-center transition-all duration-1000 ease-in-out" id="wedding-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJD-SZUi9wHFhZY2KYqPMDetnP7VOTKe2wifsPThTjuJjo1ufviK4Has8Qh14a8QLZrz8jtyNgk_k1f8wiwptt6qen5V5tgfpTFXxzGRzAL9rgJ2kj7z71sJeeruBJRh-2LXLSIsvkfC-V_w-1sqpycqppArBHYTjAzzTiyAfdIDZkuZnhGSsGJc5kxXESnfgsLXiZRNVzp7MCFtxhcPpanZYe1RcJQ8vNRFuIxGhfJw7HMPhEahD9j3GT0JykeGzg7w6-aLBvll22')">
+        <div class="absolute inset-0 bg-surface/50 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/30 to-surface"></div>
+        
+        <div class="relative z-10 text-center px-6 py-10 glass-card rounded-2xl max-w-md mx-4 flex flex-col items-center shadow-xl">
+            <span class="material-symbols-outlined text-primary text-3xl mb-3 animate-pulse">favorite</span>
+            <p class="font-label-md text-label-md uppercase text-primary mb-2 tracking-widest text-[11px]">The Wedding Of</p>
+            <h1 class="font-serif text-4xl md:text-5xl text-primary font-bold mb-4 tracking-tight">Arief &amp; Indah</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-6 italic">Sabtu, 12 Desember 2026</p>
+            
+            <!-- Dynamic Guest Name Block -->
+            <div class="mb-6 text-center" id="guest-container">
+                <p class="text-[10px] uppercase tracking-widest text-outline mb-1">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <p class="font-serif text-lg font-bold text-primary px-4 py-1.5 border-y border-outline-variant/30 min-w-[200px]" id="guest-name">Tamu Undangan</p>
+            </div>
+            
+            <button class="bg-primary text-white font-semibold uppercase tracking-widest text-[11px] px-8 py-3.5 rounded shadow-lg hover:bg-on-primary-container transition-all active:scale-95 duration-200" id="open-invitation-btn">
+                Buka Undangan
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-[1200px] mx-auto md:px-container-padding-desktop md:pt-16">
+        
+        <!-- Hero Section Background Wrapper -->
+        <section class="relative h-[90vh] w-full flex items-center justify-center overflow-hidden" id="home">
+            <div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJD-SZUi9wHFhZY2KYqPMDetnP7VOTKe2wifsPThTjuJjo1ufviK4Has8Qh14a8QLZrz8jtyNgk_k1f8wiwptt6qen5V5tgfpTFXxzGRzAL9rgJ2kj7z71sJeeruBJRh-2LXLSIsvkfC-V_w-1sqpycqppArBHYTjAzzTiyAfdIDZkuZnhGSsGJc5kxXESnfgsLXiZRNVzp7MCFtxhcPpanZYe1RcJQ8vNRFuIxGhfJw7HMPhEahD9j3GT0JykeGzg7w6-aLBvll22')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+            
+            <div class="relative z-10 text-center px-container-padding-mobile flex flex-col items-center">
+                <p class="font-label-md text-label-md uppercase text-primary mb-3 tracking-widest text-xs">Maha Suci Allah SWT yang menciptakan makhluk-Nya berpasang-pasangan</p>
+                <h2 class="font-serif text-5xl md:text-6xl text-primary font-bold mb-4 tracking-tight">Arief &amp; Indah</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant font-medium">12 Desember 2026</p>
+            </div>
+        </section>
+
+        <!-- Countdown Timer Section -->
+        <section class="py-section-gap px-container-padding-mobile text-center fade-in-section" id="countdown-section">
+            <div class="signature-divider"></div>
+            <h2 class="font-serif text-2xl md:text-3xl text-primary mb-8 font-medium">Menghitung Hari Bahagia</h2>
+            
+            <div class="flex justify-center gap-3 md:gap-6 max-w-2xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-outline-variant flex items-center justify-center text-primary font-serif text-xl md:text-3xl bg-surface-container-low shadow-[0_4px_12px_rgba(47,79,79,0.05)] font-semibold" id="countdown-days">
+                        00
+                    </div>
+                    <span class="mt-2 text-[10px] md:text-xs font-semibold text-outline uppercase tracking-wider">Hari</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-outline-variant flex items-center justify-center text-primary font-serif text-xl md:text-3xl bg-surface-container-low shadow-[0_4px_12px_rgba(47,79,79,0.05)] font-semibold" id="countdown-hours">
+                        00
+                    </div>
+                    <span class="mt-2 text-[10px] md:text-xs font-semibold text-outline uppercase tracking-wider">Jam</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-outline-variant flex items-center justify-center text-primary font-serif text-xl md:text-3xl bg-surface-container-low shadow-[0_4px_12px_rgba(47,79,79,0.05)] font-semibold" id="countdown-mins">
+                        00
+                    </div>
+                    <span class="mt-2 text-[10px] md:text-xs font-semibold text-outline uppercase tracking-wider">Menit</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-outline-variant flex items-center justify-center text-primary font-serif text-xl md:text-3xl bg-surface-container-low shadow-[0_4px_12px_rgba(47,79,79,0.05)] font-semibold" id="countdown-secs">
+                        00
+                    </div>
+                    <span class="mt-2 text-[10px] md:text-xs font-semibold text-outline uppercase tracking-wider">Detik</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Slider Section -->
+        <section class="py-12 px-container-padding-mobile text-center fade-in-section max-w-3xl mx-auto" id="quote-section">
+            <div class="relative overflow-hidden min-h-[15rem] sm:min-h-[11rem] md:min-h-[9rem] w-full flex items-center justify-center">
+                <!-- Quote 1 -->
+                <div class="quote-slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out opacity-100 transform translate-y-0" data-active="true">
+                    <p class="font-serif text-[15px] md:text-lg text-primary italic leading-relaxed px-4">
+                        "Dan di antara tanda-tanda (kebesaran-Nya) ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                    </p>
+                    <span class="text-[10px] uppercase tracking-widest text-outline mt-3 font-semibold">- QS. Ar-Rum: 21 -</span>
+                </div>
+                <!-- Quote 2 -->
+                <div class="quote-slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out opacity-0 transform translate-y-4 pointer-events-none" data-active="false">
+                    <p class="font-serif text-[15px] md:text-lg text-primary italic leading-relaxed px-4">
+                        "Mencintai bukan berarti saling memandang satu sama lain, tetapi memandang bersama ke arah yang sama."
+                    </p>
+                    <span class="text-[10px] uppercase tracking-widest text-outline mt-3 font-semibold">- Antoine de Saint-Exupéry -</span>
+                </div>
+                <!-- Quote 3 -->
+                <div class="quote-slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out opacity-0 transform translate-y-4 pointer-events-none" data-active="false">
+                    <p class="font-serif text-[15px] md:text-lg text-primary italic leading-relaxed px-4">
+                        "Pernikahan yang bahagia adalah menyatukan dua orang yang pandai memaafkan, saling mencintai tanpa batas waktu."
+                    </p>
+                    <span class="text-[10px] uppercase tracking-widest text-outline mt-3 font-semibold">- Robert J. Hastings -</span>
+                </div>
+            </div>
+            <div class="signature-divider !my-6"></div>
+        </section>
+
+        <!-- Couple Section -->
+        <section class="py-section-gap px-container-padding-mobile fade-in-section bg-surface-container-low rounded-3xl mx-4 md:mx-0 my-8">
+            <div class="text-center mb-12">
+                <span class="material-symbols-outlined text-outline-variant mb-2 text-3xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-primary font-semibold">Kedua Mempelai</h2>
+                <p class="font-body-md text-on-surface-variant text-sm mt-2 max-w-md mx-auto">Dengan memohon rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menyaksikan pernikahan kami.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+                <!-- Groom -->
+                <div class="text-center max-w-xs flex flex-col items-center">
+                    <div class="w-48 h-64 mb-6 relative">
+                        <div class="absolute inset-0 border border-outline-variant translate-x-2 translate-y-2"></div>
+                        <img class="w-full h-full object-cover relative z-10 transition-all duration-500 rounded-sm" alt="Arief Pratama" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk4PDecGWExZPDtH6s5tZ5BE9ePH792FEe_RyR25rO4fnSprYLx6qGzkXTb4E_HRFWNV2FmIfZDRQeQ0QAxkEGy7hcPs9JTHd-hstCtCsLWAh_Iya_ojbN2L1WDGQ5eVMvi-FEdCYCheR44uUnKojhUQtxCiUUXxwy11teWSAvfg5zQY1OWaZF0fwVSv1QL-Vu19g_tHxL7_P5e5nvxM5QCmiCx8DD5fVShXrJv2hUVePaBGStWSRKejaDTGidM3h1ym_Y8QBWf1V2"/>
+                    </div>
+                    <h3 class="font-serif text-2xl text-primary font-bold mb-1">Arief Pratama, S.T.</h3>
+                    <p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Putra Pertama dari</p>
+                    <p class="font-body-md text-on-surface-variant text-sm font-semibold">Bpk. Budi Santoso &amp; Ibu Ratna</p>
+                    <a class="text-secondary hover:text-primary transition-colors text-xs flex items-center gap-1 mt-3" href="#" target="_blank" rel="noopener">
+                        <span class="material-symbols-outlined text-[14px]">photo_camera</span> @ariefpratama
+                    </a>
+                </div>
+                
+                <div class="font-serif text-3xl text-outline-variant italic md:mt-0 mt-4 mb-4 md:mb-0">&amp;</div>
+                
+                <!-- Bride -->
+                <div class="text-center max-w-xs flex flex-col items-center">
+                    <div class="w-48 h-64 mb-6 relative">
+                        <div class="absolute inset-0 border border-outline-variant -translate-x-2 translate-y-2"></div>
+                        <img class="w-full h-full object-cover relative z-10 transition-all duration-500 rounded-sm" alt="Indah Permatasari" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQqlEp-e1YVph91gBr4arf8LmoEezcxhci-VR8TRbd2Sqroit7Iez2yesLpjtMjuJLNFpWgpKM6untFBAKq1m5sSpG93VIV2y9Td9Cnz1NqEP-Cgd0QaMng1i9jUw8p-Yntutk_LwDqWf2JmeK2WcoHyuUCGsS395xUgrCXYLF7YFvObFftVtaVLmXZMZso0Zu_6xu4Ut5GCjM9UughWQv_jXyIg-hIDMvWnNccCiNflMoZGc2MukMKy2LhAVUgnIGDsen1lSk-5B"/>
+                    </div>
+                    <h3 class="font-serif text-2xl text-primary font-bold mb-1">Indah Permatasari, S.Psi.</h3>
+                    <p class="font-body-md text-on-surface-variant text-xs mb-3 italic">Putri Kedua dari</p>
+                    <p class="font-body-md text-on-surface-variant text-sm font-semibold">Bpk. Hendra Wijaya &amp; Ibu Siti</p>
+                    <a class="text-secondary hover:text-primary transition-colors text-xs flex items-center gap-1 mt-3" href="#" target="_blank" rel="noopener">
+                        <span class="material-symbols-outlined text-[14px]">photo_camera</span> @indahpermata
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="py-section-gap px-container-padding-mobile fade-in-section" id="event">
+            <div class="signature-divider"></div>
+            <h2 class="font-serif text-3xl md:text-4xl text-center text-primary mb-12 font-semibold">Informasi Acara</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Akad Nikah Card -->
+                <div class="event-card tilt-card border border-outline-variant/60 p-8 text-center relative overflow-hidden bg-surface rounded-lg">
+                    <div class="absolute top-0 right-0 w-16 h-16 border-t border-r border-primary/20"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-primary/20"></div>
+                    
+                    <span class="material-symbols-outlined text-outline-variant text-4xl mb-4">church</span>
+                    <h3 class="font-serif text-xl md:text-2xl text-primary mb-4 font-semibold">Akad Nikah</h3>
+                    
+                    <div class="font-body-md text-on-surface-variant mb-6 space-y-2 text-sm md:text-base">
+                        <p class="font-bold text-primary">Sabtu, 12 Desember 2026</p>
+                        <p>Pukul 08:00 WIB - 10:00 WIB</p>
+                        <p class="mt-4 pt-4 border-t border-outline-variant/10">
+                            <strong>The Ritz-Carlton Jakarta</strong><br/>
+                            Pacific Place, SCBD<br/>
+                            Kebayoran Baru, Jakarta Selatan
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-center gap-2 mt-4">
+                        <a class="inline-block border border-primary text-primary px-5 py-2 uppercase tracking-widest text-[11px] font-semibold hover:bg-primary hover:text-white transition-all duration-300 rounded" href="https://maps.google.com" target="_blank" rel="noopener">
+                            Google Maps
+                        </a>
+                        <a class="inline-block bg-primary text-white px-5 py-2 uppercase tracking-widest text-[11px] font-semibold hover:bg-on-primary-container transition-all duration-300 rounded" id="add-to-calendar-akad" href="#" target="_blank" rel="noopener">
+                            + Kalender
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Resepsi Card -->
+                <div class="event-card tilt-card border border-outline-variant/60 p-8 text-center relative overflow-hidden bg-surface rounded-lg">
+                    <div class="absolute top-0 right-0 w-16 h-16 border-t border-r border-primary/20"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-primary/20"></div>
+                    
+                    <span class="material-symbols-outlined text-outline-variant text-4xl mb-4">celebration</span>
+                    <h3 class="font-serif text-xl md:text-2xl text-primary mb-4 font-semibold">Resepsi Pernikahan</h3>
+                    
+                    <div class="font-body-md text-on-surface-variant mb-6 space-y-2 text-sm md:text-base">
+                        <p class="font-bold text-primary">Sabtu, 12 Desember 2026</p>
+                        <p>Pukul 19:00 WIB - Selesai</p>
+                        <p class="mt-4 pt-4 border-t border-outline-variant/10">
+                            <strong>The Ritz-Carlton Jakarta</strong><br/>
+                            Grand Ballroom<br/>
+                            Kebayoran Baru, Jakarta Selatan
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-center gap-2 mt-4">
+                        <a class="inline-block border border-primary text-primary px-5 py-2 uppercase tracking-widest text-[11px] font-semibold hover:bg-primary hover:text-white transition-all duration-300 rounded" href="https://maps.google.com" target="_blank" rel="noopener">
+                            Google Maps
+                        </a>
+                        <a class="inline-block bg-primary text-white px-5 py-2 uppercase tracking-widest text-[11px] font-semibold hover:bg-on-primary-container transition-all duration-300 rounded" id="add-to-calendar-resepsi" href="#" target="_blank" rel="noopener">
+                            + Kalender
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="py-section-gap px-container-padding-mobile fade-in-section bg-surface-container-low rounded-3xl mx-4 md:mx-0 my-8" id="gallery">
+            <h2 class="font-serif text-3xl md:text-4xl text-center text-primary mb-12 font-semibold">Momen Bahagia Kami</h2>
+            
+            <!-- Bento Grid Gallery -->
+            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 max-w-5xl mx-auto h-[600px] md:h-[500px]">
+                <div class="col-span-2 row-span-2 relative overflow-hidden group rounded-lg shadow-sm border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Momen 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSmZPgRq4hTKaX810AfoyLFnwkegOVBi73Wp6DYz4GY6GlhSqUQiROzqgnh05cEyQVGSQPUqa0TlapZk9fsGfWgNzeF-bPSvsiJgYEtfVZbI1OTLZzYYBOUxHYyaGVwAcCu4YVgduU15XQUwcXcq9z3C75mVBlg1D28gW6YeHVnxE92uAsIzNSWjqJShskhxoiJMM3k2vkAlD3LK8iY45VGuwHJ6MegOrb6gbpmf5o1JqNED8vMTJaeJFojQgM1iHMuG6HjNxWfI2h"/>
+                </div>
+                <div class="col-span-1 row-span-1 relative overflow-hidden group rounded-lg shadow-sm border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Momen 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXMNdfuFPweoiKjsNf0Z2Ei42CzvTA0IHV_SKV7dVt1DbfugpMw-8UywQz-o5XF-edq2GwISiu8N9bXP9iAbLdxa4u1RkgCIYkX0IEKzE3pDVJIM7PTIz6eXDZiF3nXtuN1icTe26BGpQZUqUxmY9hrFUwJctQbEVHljclC9EgjVB-CQNKriTpN2-H3Q2qztzLEvG5kTI5NIxHqa4ILzDIsgYKEsrULYzCZpVsB-JqE7UfRpZzclafz7SmeCsldAmABJNkIkiXkyBR"/>
+                </div>
+                <div class="col-span-1 row-span-1 relative overflow-hidden group rounded-lg shadow-sm border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Momen 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJEbYZxxWsPzVFP-BQQxwlKGJhZgWD2YMbURJXZ7uy6NHmunCXmCWv3iKC2WvmjLI-aRwZG8b6wyWLCyS86parxK2Hat5LPfmSHzjcGvA372b2Wdbk4KM4ZE_Qx9GMVsQsMz_NjkpqNm0hm_qa7gjCOUMyQf5Jo9zD14y8SOARcwbSEgxewwsHAdNqYCz1_3kOzKMSMdyGd6pgixEkxFc2SQ0g-vvAlzKTYlEseRLxuXrGculvHiYZIg4VktT1d3MNT_Fj2SLQR3Cs"/>
+                </div>
+                <div class="col-span-2 md:col-span-1 row-span-1 relative overflow-hidden group rounded-lg shadow-sm border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Momen 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8gULc11R7AHCNBshsbWQ2RVFU6-BKirbTgo3IgEUT3gKt9o9LlYIG-mdWkwGrRIOsDP8FzOLEb8tX2cd6d-XPdXQlW7Dnl9L0v9zzOvQfKnqMNVazkJRca29tfozd9zI4f66y05VcN02HA2WBt09z3m4XIuksvsf6w3swnVjdEAmGV-4kfwIkTxD7fgWGIaBCecpyvhUZKjSjpSGu90M9rbSfgcf4v9Ox6kdHHFmq5b8-rsWHQ6U1Cc4Csh9mBeVSZX5QFW_5bB7K"/>
+                </div>
+                <div class="hidden md:block col-span-1 row-span-1 relative overflow-hidden group rounded-lg shadow-sm border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Momen 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGJv25Z25gp5gc3_QAPgL_edyVQOarU28uDiJvlvB4PU1undqnHlYKe4Pbb7YUvuufwM_pZVFWdhz8ZlO1_CHr_79BJE2bP9N0xhjqkeJ8DUhyLMEjGN3CTUdogZ24LJajQ8KmEbarpcCiGWh7aIxV6rkl7Nj_BB71emAjOA7P03xljC8hKfb_94EFM8QDp4VkiBsCX9F4w5M3DmLs22hIgxsUKtlf_5doyiNRpj-cdCZrx654x3j7F92kO-sr7ZDnjte0dT8k19xH"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & Guest Book Section -->
+        <section class="py-section-gap px-container-padding-mobile fade-in-section" id="rsvp">
+            <div class="signature-divider"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- RSVP Form Container -->
+                <div class="bg-surface border border-outline-variant/40 p-8 rounded-xl shadow-[0_8px_24px_rgba(115,92,0,0.02)]">
+                    <h2 class="font-serif text-2xl md:text-3xl text-primary mb-2 text-center font-semibold">Konfirmasi Kehadiran</h2>
+                    <p class="font-body-md text-center text-on-surface-variant mb-8 text-xs">Mohon konfirmasi kehadiran Anda di bawah ini.</p>
+                    
+                    <form class="space-y-6" id="rsvp-form">
+                        <div class="input-group">
+                            <input id="rsvp-name" required type="text" placeholder=" " />
+                            <label for="rsvp-name">Nama Lengkap</label>
+                        </div>
+                        
+                        <div class="input-group">
+                            <!-- Empty initial value to let label float cleanly -->
+                            <select id="rsvp-attendance" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="hadir">Hadir (Will Attend)</option>
+                                <option value="tidak">Tidak Hadir (Cannot Attend)</option>
+                            </select>
+                            <label for="rsvp-attendance">Status Kehadiran</label>
+                        </div>
+                        
+                        <div class="input-group">
+                            <input id="rsvp-guests" max="5" min="1" required type="number" value="1" placeholder=" " />
+                            <label for="rsvp-guests">Jumlah Tamu</label>
+                        </div>
+                        
+                        <button class="w-full bg-tertiary text-on-tertiary font-semibold uppercase tracking-widest text-xs py-4 mt-6 hover:bg-on-tertiary-container transition-all shadow-[0_4px_12px_rgba(86,100,43,0.15)] flex items-center justify-center gap-2 rounded" type="submit">
+                            Kirim via WhatsApp
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Guest Book (Buku Ucapan) -->
+                <div class="flex flex-col">
+                    <h2 class="font-serif text-2xl md:text-3xl text-primary mb-4 font-semibold">Buku Ucapan &amp; Doa</h2>
+                    
+                    <!-- Wishes Scroll Container -->
+                    <div class="flex-grow bg-surface-container-low p-6 border border-outline-variant/30 mb-6 h-64 overflow-y-auto space-y-4 rounded-xl shadow-inner" id="wishes-list">
+                        <!-- Wishes items will be populated by app.js -->
+                    </div>
+                    
+                    <!-- Write Wish Form -->
+                    <form class="space-y-4" id="wish-form">
+                        <div class="input-group">
+                            <input id="wish-name" required type="text" placeholder=" " />
+                            <label for="wish-name">Nama Anda</label>
+                        </div>
+                        
+                        <div class="input-group">
+                            <textarea id="wish-message" required rows="2" placeholder=" "></textarea>
+                            <label for="wish-message">Ucapan atau Doa Restu</label>
+                        </div>
+                        
+                        <button class="border border-primary text-primary px-6 py-2.5 uppercase tracking-widest text-[11px] font-semibold hover:bg-primary hover:text-white transition-all rounded" type="submit">
+                            Kirim Ucapan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-16 text-center text-on-surface-variant">
+            <div class="signature-divider"></div>
+            <p class="font-serif text-3xl text-primary mb-2 font-bold">Arief &amp; Indah</p>
+            <p class="font-body-md text-xs tracking-widest uppercase text-outline mt-1 font-semibold">Terima Kasih</p>
+        </footer>
+    </main>
+
+    <!-- Bottom Navigation Bar (Visible on mobile/tablet) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface/95 border-t border-outline-variant/20 backdrop-blur-lg rounded-t-xl shadow-[0_-8px_24px_rgba(115,92,0,0.06)]">
+        <a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container/20 rounded-full px-4 py-1 scale-98 transition-transform" href="#home">
+            <span class="material-symbols-outlined mb-0.5 text-xl">home</span>
+            <span class="text-[9px] uppercase tracking-wider font-semibold">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary px-4 py-1" href="#event">
+            <span class="material-symbols-outlined mb-0.5 text-xl">event</span>
+            <span class="text-[9px] uppercase tracking-wider font-semibold">Acara</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary px-4 py-1" href="#gallery">
+            <span class="material-symbols-outlined mb-0.5 text-xl">photo_library</span>
+            <span class="text-[9px] uppercase tracking-wider font-semibold">Galeri</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary px-4 py-1" href="#rsvp">
+            <span class="material-symbols-outlined mb-0.5 text-xl">mail</span>
+            <span class="text-[9px] uppercase tracking-wider font-semibold">RSVP</span>
+        </a>
+    </nav>
+
+    <!-- Petals Container for Luxury Background Animation -->
+    <div id="petals-container" class="fixed inset-0 pointer-events-none z-40 overflow-hidden"></div>
+
+    <!-- Lightbox Container for Gallery -->
+    <div id="gallery-lightbox" class="fixed inset-0 z-[200] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white text-4xl hover:text-primary-container transition-colors" aria-label="Close Lightbox">&times;</button>
+        <img id="lightbox-img" src="" alt="Zoomed Photo" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain transition-transform duration-300 scale-95" />
+    </div>
+
+    <!-- Firebase SDK (Compatibility Mode) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Background Music Audio Object (Managed by app.js) -->
+    <script>
+        // Custom interactive script to fade out the invitation cover overlay
+        document.getElementById("open-invitation-btn").addEventListener("click", function() {
+            const cover = document.getElementById("wedding-cover");
+            cover.classList.add("opacity-0", "pointer-events-none");
+            setTimeout(() => {
+                cover.style.display = "none";
+            }, 1000);
+        });
+    </script>
+    <!-- Linked JavaScript Logic File -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

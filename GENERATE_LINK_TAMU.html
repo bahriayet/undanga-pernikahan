@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Link Undangan - Arief & Indah</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fbf9f5;
+            color: #1b1c1a;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="py-10 px-4 min-h-screen flex flex-col justify-between">
+    <div class="max-w-4xl mx-auto w-full bg-white rounded-2xl shadow-md border border-neutral-200/50 p-6 md:p-10">
+        <!-- Header -->
+        <header class="text-center mb-8 border-b border-neutral-100 pb-6">
+            <h1 class="serif-title text-3xl md:text-4xl text-[#735c00] font-bold mb-2">Guest Link Generator</h1>
+            <p class="text-sm text-neutral-500">Alat bantu untuk membuat link undangan personal dan pesan WhatsApp otomatis untuk tamu undangan</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Form Input -->
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#735c00] mb-2" for="base-url">URL Website Undangan Anda</label>
+                    <input class="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#735c00]" type="url" id="base-url" placeholder="Contoh: https://arief-indah.web.app">
+                    <p class="text-[11px] text-neutral-400 mt-1">Gunakan URL tempat Anda mempublikasikan website ini nanti.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#735c00] mb-2" for="guest-names">Daftar Nama Tamu (Satu Nama per Baris)</label>
+                    <textarea class="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm h-48 focus:outline-none focus:border-[#735c00] resize-y" id="guest-names" placeholder="Contoh:&#10;Bapak Budi Santoso&#10;Sarah Wijaya & Partner&#10;Keluarga Hendra Pratama"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#735c00] mb-2" for="template-message">Template Pesan WhatsApp</label>
+                    <textarea class="w-full border border-neutral-300 rounded-lg px-4 py-3 text-xs h-36 focus:outline-none focus:border-[#735c00] resize-y text-neutral-600" id="template-message">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i [nama] untuk menghadiri hari bahagia pernikahan kami. 
+
+Detail undangan dapat diakses melalui link personal berikut:
+[link]
+
+Terima kasih atas doa restunya.
+— Arief & Indah</textarea>
+                    <p class="text-[10px] text-neutral-400 mt-1">Gunakan tag <code class="bg-neutral-100 px-1 rounded text-[#735c00]">[nama]</code> dan <code class="bg-neutral-100 px-1 rounded text-[#735c00]">[link]</code> agar otomatis tergantikan oleh sistem.</p>
+                </div>
+
+                <button onclick="generateLinks()" class="w-full bg-[#735c00] hover:bg-[#554300] text-white font-semibold uppercase tracking-wider text-xs py-4 rounded-lg transition-all shadow-sm">
+                    Buat Link & Pesan Undangan
+                </button>
+            </div>
+
+            <!-- Hasil Output -->
+            <div class="flex flex-col">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#735c00] mb-3">Hasil Generate (<span id="count-result">0</span> Tamu)</h3>
+                <div class="flex-grow border border-neutral-200 bg-neutral-50/50 rounded-lg p-4 h-[550px] overflow-y-auto space-y-4" id="results-container">
+                    <p class="text-center text-sm text-neutral-400 my-auto py-24">Belum ada data. Silakan isi form di sebelah kiri dan klik "Buat Link".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-xs text-neutral-400 mt-8">
+        &copy; 2026 Arief & Indah. Dibuat khusus sebagai utilitas pendukung Undangan Pernikahan Digital.
+    </footer>
+
+    <!-- Logic Generator -->
+    <script>
+        // Ambil URL asal (default localhost jika belum di-hosting)
+        document.getElementById("base-url").value = window.location.origin;
+
+        function generateLinks() {
+            const baseUrlInput = document.getElementById("base-url").value.trim();
+            const namesText = document.getElementById("guest-names").value.trim();
+            const template = document.getElementById("template-message").value;
+            const container = document.getElementById("results-container");
+            const countResult = document.getElementById("count-result");
+
+            if (!baseUrlInput) {
+                alert("Harap masukkan URL website undangan Anda terlebih dahulu.");
+                return;
+            }
+
+            if (!namesText) {
+                alert("Harap masukkan minimal satu nama tamu.");
+                return;
+            }
+
+            // Bersihkan "/" di akhir baseUrl jika ada
+            const cleanBaseUrl = baseUrlInput.endsWith('/') ? baseUrlInput.slice(0, -1) : baseUrlInput;
+            
+            // Pisahkan berdasarkan baris baru
+            const names = namesText.split('\n').map(n => n.trim()).filter(n => n.length > 0);
+            container.innerHTML = "";
+            countResult.textContent = names.length;
+
+            names.forEach((name, index) => {
+                // Encode URL parameter
+                const encodedName = encodeURIComponent(name).replace(/%20/g, '+');
+                const personalizedUrl = `${cleanBaseUrl}/?to=${encodedName}`;
+                
+                // Susun pesan WA
+                let waMessage = template.replace(/\[nama\]/g, name).replace(/\[link\]/g, personalizedUrl);
+                
+                // Buat item card untuk hasil
+                const card = document.createElement("div");
+                card.className = "bg-white border border-neutral-200 rounded-xl p-4 shadow-sm space-y-3";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start border-b border-neutral-100 pb-2">
+                        <span class="text-xs font-bold text-neutral-700">${index + 1}. ${name}</span>
+                        <span class="text-[9px] bg-[#735c00]/10 text-[#735c00] px-2 py-0.5 rounded-full font-semibold uppercase">Ready</span>
+                    </div>
+                    <div class="text-[11px] text-neutral-500 break-all select-all font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
+                        ${personalizedUrl}
+                    </div>
+                    <div class="flex gap-2 text-[10px]">
+                        <button onclick="copyText('${personalizedUrl}', this)" class="flex-1 border border-neutral-300 hover:border-[#735c00] hover:text-[#735c00] py-2 rounded transition-colors font-medium">
+                            Salin Link
+                        </button>
+                        <button onclick="copyText(\`${waMessage.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, this)" class="flex-1 bg-[#56642b] hover:bg-[#3d4a14] text-white py-2 rounded transition-colors font-medium">
+                            Salin Pesan WA
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function copyText(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = "Tersalin! ✔️";
+                button.disabled = true;
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 1500);
+            }).catch(err => {
+                console.error("Gagal menyalin teks: ", err);
+                alert("Gagal menyalin teks.");
+            });
+        }
+    </script>
+</body>
+</html>

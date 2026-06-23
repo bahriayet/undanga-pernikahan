@@ -1,0 +1,293 @@
+/* ==========================================================================
+   STYLE.CSS - PREMIUM WEDDING INVITATION CUSTOM STYLES
+   ========================================================================== */
+
+/* Google Fonts Setup */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+/* Smooth Scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #fbf9f5;
+}
+::-webkit-scrollbar-thumb {
+    background: #bcdcdcd9;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #735c00;
+}
+
+/* Background & base styles */
+body {
+    background-color: #fbf9f5;
+    color: #1b1c1a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Signature Gold Tapered Divider */
+.signature-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(115, 92, 0, 0.3), transparent);
+    margin: 2.5rem auto;
+    width: 80%;
+    position: relative;
+}
+.signature-divider::after {
+    content: "◆";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #735c00;
+    font-size: 10px;
+    background-color: #fbf9f5;
+    padding: 0 12px;
+}
+
+/* Elegant Glassmorphism Cards */
+.glass-card {
+    background: rgba(251, 249, 245, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(208, 197, 175, 0.4);
+}
+
+/* Fade In Scroll Animation */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, visibility;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Premium Floating Input Labels */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.input-group input, 
+.input-group textarea, 
+.input-group select {
+    width: 100%;
+    padding: 12px 4px 8px 4px;
+    font-size: 15px;
+    color: #1b1c1a;
+    border: none;
+    border-bottom: 1.5px solid #d0c5af;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 0;
+}
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 4px;
+    font-size: 15px;
+    color: #7f7663;
+    pointer-events: none;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) all;
+}
+.input-group input:focus, 
+.input-group textarea:focus, 
+.input-group select:focus {
+    border-bottom: 1.5px solid #735c00;
+    box-shadow: 0 1px 0 0 #735c00;
+}
+/* Trigger floating state when active/focused/valid */
+.input-group input:focus ~ label, 
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label, 
+.input-group textarea:not(:placeholder-shown) ~ label,
+.input-group textarea:valid ~ label,
+.input-group select:focus ~ label, 
+.input-group select:not([value=""]) ~ label,
+.input-group select:valid ~ label {
+    top: -10px;
+    left: 0;
+    font-size: 11px;
+    color: #735c00;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Fallback for select dropdown default option styling */
+select option {
+    background-color: #fbf9f5;
+    color: #1b1c1a;
+}
+
+/* Subtle micro-animations for interactive cards */
+.event-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.event-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(115, 92, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(115, 92, 0, 0.06);
+}
+
+/* Audio Player Pulse Ripple Effect */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(86, 100, 43, 0.2), 0 0 0 10px rgba(86, 100, 43, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 0 10px rgba(86, 100, 43, 0.2), 0 0 0 20px rgba(86, 100, 43, 0);
+    }
+}
+.music-pulse {
+    animation: ripple 1.6s infinite;
+}
+
+/* Floating Cover Lock */
+.cover-locked {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Safe Area Padding for Modern Mobile Devices */
+.pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+}
+
+/* ==========================================================================
+   LUXURY EXTENSIONS (PETALS, LIGHTBOX, GIFT CARDS)
+   ========================================================================== */
+
+/* Petal Falling Animation */
+.petal {
+    position: absolute;
+    background: linear-gradient(135deg, #ffd700, #d4af37, #b8860b);
+    border-radius: 15% 0 50% 0; /* Petal shape */
+    opacity: 0.7;
+    pointer-events: none;
+    transform-origin: left top;
+    box-shadow: 0 2px 5px rgba(115, 92, 0, 0.15);
+}
+
+.petal.pink-petal {
+    background: linear-gradient(135deg, #ffc0cb, #ffb6c1, #ff69b4);
+    border-radius: 50% 0 50% 50%;
+}
+
+@keyframes fall {
+    0% {
+        top: -10%;
+        transform: rotate(0deg) scale(0.8);
+    }
+    100% {
+        top: 110%;
+        transform: rotate(360deg) scale(1.2);
+    }
+}
+
+@keyframes sway {
+    0% {
+        margin-left: 0px;
+    }
+    50% {
+        margin-left: 50px;
+    }
+    100% {
+        margin-left: -50px;
+    }
+}
+
+/* Lightbox Modal */
+#gallery-lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+#gallery-lightbox.active #lightbox-img {
+    transform: scale(1);
+}
+
+/* Copied Button Feedback Style */
+.copied-success {
+    background-color: #56642b !important; /* tertiary color */
+    color: #ffffff !important;
+    border-color: #56642b !important;
+}
+
+/* Glassmorphism improvements for Card Bank */
+.event-card img {
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.05));
+    transition: transform 0.3s ease;
+}
+.event-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Calendar Button Hover */
+#add-to-calendar-akad, #add-to-calendar-resepsi {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#add-to-calendar-akad:hover, #add-to-calendar-resepsi:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   LUXURY STYLES PHASE 2 (QUOTE SLIDER, 3D TILT, HEARTS CONFETTI)
+   ========================================================================== */
+
+/* Quote Slider Transitions */
+.quote-slide {
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* 3D Tilt Card */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+.tilt-card > * {
+    transform: translateZ(25px); /* Push children out for 3D depth */
+}
+
+/* Confetti Heart Particles */
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.5rem;
+    z-index: 250;
+    will-change: transform, opacity;
+    animation: floatUpAndFade 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--x-offset), var(--y-offset)) scale(var(--scale-multiplier)) rotate(var(--rotation));
+        opacity: 0;
+    }
+}
+
+/* Touch feedback for mobile screens */
+@media (pointer: coarse) {
+    .event-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
