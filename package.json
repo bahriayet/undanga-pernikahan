@@ -1,16 +1,30 @@
 {
   "name": "undangan-pernikahan",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mobile-first digital wedding invitation with countdown, RSVP, and guest book.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wedding-invitation",
+    "html",
+    "css",
+    "javascript",
+    "frontend"
+  ],
+  "author": "Bahri Muhammad",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahriayet/undanga-pernikahan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bahriayet/undanga-pernikahan/issues"
+  },
+  "homepage": "https://github.com/bahriayet/undanga-pernikahan#readme",
   "type": "commonjs",
   "private": true,
   "devDependencies": {
