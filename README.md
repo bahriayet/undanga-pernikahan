@@ -53,8 +53,9 @@ const WEDDING_CONFIG = {
 };
 ```
 
-Set `firebase.enabled` to `false` unless you have configured Firestore rules
-for the guest book. The default configuration is a demo.
+Firebase sync is **disabled by default**; the guest book uses `localStorage`.
+Enable it only after creating your own Firebase project and configuring
+Firestore rules for the guest book.
 
 ## Run locally
 

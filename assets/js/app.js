@@ -35,7 +35,9 @@ const WEDDING_CONFIG = {
     bgMusicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     
     firebase: {
-        enabled: true,
+        // Aktifkan hanya setelah memakai project Firebase sendiri dan
+        // mengatur Firestore rules. Default: guest book memakai localStorage.
+        enabled: false,
         config: {
             apiKey: "AIzaSyDMX0__A6ctdPen0S-9Kz3s2waQlNsJvio",
             authDomain: "undangan-penikahan-4e528.firebaseapp.com",
